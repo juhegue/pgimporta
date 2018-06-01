@@ -1,0 +1,6 @@
+csv==1.0
+MySQL-python==1.2.5
+odict==1.5.1
+psycopg2==2.6
+wxPython==3.0.0.0
+wxPython-common==3.0.0.0

@@ -1,0 +1,234 @@
+{
+    "Campo Definido001": {
+        "nombre": "precio_iva", 
+        "valor": "pre = float(precio)\nprecio_iva= pre + (pre * 21 /100)"
+    }, 
+    "Campo Definido002": {
+        "nombre": "descripcion_vta", 
+        "valor": "des1 = descripcion[0:11]\ndes2 = descripcion[12:]\n\ndescripcion_vta = des1 + \"_vta \" + des2"
+    }, 
+    "Campo Definido003": {
+        "nombre": "numero", 
+        "valor": "numero=int(precio)+1"
+    }, 
+    "Conexion": {
+        "clave": "", 
+        "database": "prueba", 
+        "host": "192.168.1.34", 
+        "puerto": 5432, 
+        "usuario": "openerp"
+    }, 
+    "Fichero CSV": {
+        "campos": [
+            "nombre", 
+            "precio", 
+            "descripcion"
+        ], 
+        "delimitador": "\t", 
+        "encode": "utf-8", 
+        "fichero": "/home/juan/workspace/openerp/pgImportar/src/ejemplos/prueba.csv", 
+        "lineas": 50, 
+        "nombres1": true
+    }, 
+    "ID Insert001": [
+        "01_a1", 
+        [
+            [
+                [
+                    "id", 
+                    "integer", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "num", 
+                    "integer", 
+                    null
+                ], 
+                "@csv.precio"
+            ], 
+            [
+                [
+                    "data1", 
+                    "character varying", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "data2", 
+                    "character varying", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "data3", 
+                    "character varying", 
+                    null
+                ], 
+                "@csv.nombre"
+            ]
+        ], 
+        [
+            "id"
+        ]
+    ], 
+    "ID Insert002": [
+        "02_a1", 
+        [
+            [
+                [
+                    "id", 
+                    "integer", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "num", 
+                    "integer", 
+                    null
+                ], 
+                "@01_a1.id"
+            ], 
+            [
+                [
+                    "data1", 
+                    "character varying", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "data2", 
+                    "character varying", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "data3", 
+                    "character varying", 
+                    null
+                ], 
+                "@csv.nombre"
+            ]
+        ], 
+        [
+            "id"
+        ]
+    ], 
+    "ID Insert003": [
+        "03_a1", 
+        [
+            [
+                [
+                    "id", 
+                    "integer", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "num", 
+                    "integer", 
+                    null
+                ], 
+                "@02_a1.id"
+            ], 
+            [
+                [
+                    "data1", 
+                    "character varying", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "data2", 
+                    "character varying", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "data3", 
+                    "character varying", 
+                    null
+                ], 
+                "@csv.nombre"
+            ]
+        ], 
+        [
+            "id"
+        ]
+    ], 
+    "MySql": {
+        "clave": "", 
+        "database": "", 
+        "host": "localhost", 
+        "puerto": 3306, 
+        "tabla": "", 
+        "tablas_py": "", 
+        "usuario": ""
+    }, 
+    "Sql Inicial001": {
+        "campos": {}, 
+        "continuar": 0, 
+        "nombre": "Borra a1", 
+        "sql": "delete from a1", 
+        "tablas": []
+    }, 
+    "Sql por Registro001": {
+        "campos": {
+            "id": "None"
+        }, 
+        "continuar": 0, 
+        "modificar": true, 
+        "nombre": "modi_01_a1", 
+        "sql": "SELECT id FROM 01_a1 WHERE num='@csv.precio'", 
+        "tablas": [
+            "01_a1"
+        ]
+    }, 
+    "Sql por Registro002": {
+        "campos": {
+            "id": "None"
+        }, 
+        "continuar": 0, 
+        "modificar": true, 
+        "nombre": "modi_02_a1", 
+        "sql": "SELECT id FROM 02_a1 WHERE num='@modi_01_a1.id'", 
+        "tablas": [
+            "02_a1"
+        ]
+    }, 
+    "Sql por Registro003": {
+        "campos": {
+            "id": "None"
+        }, 
+        "continuar": 0, 
+        "modificar": true, 
+        "nombre": "modi_03_a1", 
+        "sql": "SELECT id FROM 03_a1 WHERE num='@modi_02_a1.id'", 
+        "tablas": [
+            "03_a1"
+        ]
+    }, 
+    "Valor Fijo001": {
+        "nombre": "verdadero", 
+        "valor": "True"
+    }, 
+    "Version": "0.1.1"
+}

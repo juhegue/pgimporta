@@ -1,0 +1,595 @@
+{
+    "Campo Definido001": {
+        "nombre": "precio_iva", 
+        "valor": "pre = float(precio)\nprecio_iva= pre + (pre * 21 /100)"
+    }, 
+    "Campo Definido002": {
+        "nombre": "descripcion_vta", 
+        "valor": "des1 = descripcion[0:11]\ndes2 = descripcion[12:]\n\ndescripcion_vta = des1 + \"_vta \" + des2"
+    }, 
+    "Conexion": {
+        "clave": "", 
+        "database": "prueba", 
+        "host": "192.168.1.34", 
+        "puerto": 5432, 
+        "usuario": "openerp"
+    }, 
+    "Fichero CSV": {
+        "campos": [
+            "nombre", 
+            "precio", 
+            "descripcion"
+        ], 
+        "delimitador": "\t", 
+        "encode": "utf-8", 
+        "fichero": "/home/juan/workspace/openerp/pgImportar/src/ejemplos/articulos.csv", 
+        "lineas": 50, 
+        "nombres1": true
+    }, 
+    "Filtros": {
+        "Entero": "# El valor del csv se asigna a la variable\n#campo para operar con ella\n\ntry:\n    campo=int(campo)\nexcept:\n    campo=0\n", 
+        "ValidaDNI": "dni=campo\ntabla = \"TRWAGMYFPDXBNJZSQVHLCKE\"\ndig_ext = \"XYZ\"\nreemp_dig_ext = {'X':'0', 'Y':'1', 'Z':'2'}\nnumeros = \"1234567890\"\ndni = dni.upper()\nif len(dni) == 9:\n    dig_control = dni[8]\n    dni = dni[:8]\n    if dni[0] in dig_ext:\n        dni = dni.replace(dni[0], reemp_dig_ext[dni[0]])\n    if len(dni) != len([n for n in dni if n in numeros]) or tabla[int(dni)%23] != dig_control:\n        raise Exception(\"DNI incorrecto:%s\" % campo)\nelse:\n    raise Exception(\"DNI incorrecto:%s\" % campo)"
+    }, 
+    "Filtros de los Campos": {
+        "Dni": [
+            "ValidaDNI"
+        ], 
+        "precio": [
+            "Entero"
+        ], 
+        "precio_iva": [
+            "Entero"
+        ]
+    }, 
+    "ID Insert001": [
+        "01_product_template", 
+        [
+            [
+                [
+                    "purchase_ok", 
+                    "boolean", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "procure_method", 
+                    "character varying", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "supply_method", 
+                    "character varying", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "loc_case", 
+                    "character varying", 
+                    16
+                ], 
+                null
+            ], 
+            [
+                [
+                    "sale_delay", 
+                    "double precision", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "loc_row", 
+                    "character varying", 
+                    16
+                ], 
+                null
+            ], 
+            [
+                [
+                    "loc_rack", 
+                    "character varying", 
+                    16
+                ], 
+                null
+            ], 
+            [
+                [
+                    "type", 
+                    "character varying", 
+                    null
+                ], 
+                "@muestra.type"
+            ], 
+            [
+                [
+                    "rental", 
+                    "boolean", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "uom_po_id", 
+                    "integer", 
+                    null
+                ], 
+                "@muestra.uom_po_id"
+            ], 
+            [
+                [
+                    "produce_delay", 
+                    "double precision", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "state", 
+                    "character varying", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "company_id", 
+                    "integer", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "product_manager", 
+                    "integer", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "description_sale", 
+                    "text", 
+                    null
+                ], 
+                "@csv.descripcion_vta"
+            ], 
+            [
+                [
+                    "sale_ok", 
+                    "boolean", 
+                    null
+                ], 
+                "@verdadero"
+            ], 
+            [
+                [
+                    "volume", 
+                    "double precision", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "uos_coeff", 
+                    "numeric", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "name", 
+                    "character varying", 
+                    128
+                ], 
+                "@csv.nombre"
+            ], 
+            [
+                [
+                    "categ_id", 
+                    "integer", 
+                    null
+                ], 
+                "@muestra.categ_id"
+            ], 
+            [
+                [
+                    "cost_method", 
+                    "character varying", 
+                    null
+                ], 
+                "@muestra.cost_method"
+            ], 
+            [
+                [
+                    "description_purchase", 
+                    "text", 
+                    null
+                ], 
+                "@csv.descripcion_vta"
+            ], 
+            [
+                [
+                    "uom_id", 
+                    "integer", 
+                    null
+                ], 
+                "@muestra.uom_id"
+            ], 
+            [
+                [
+                    "mes_type", 
+                    "character varying", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "standard_price", 
+                    "numeric", 
+                    null
+                ], 
+                "@csv.precio"
+            ], 
+            [
+                [
+                    "weight_net", 
+                    "numeric", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "weight", 
+                    "numeric", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "description", 
+                    "text", 
+                    null
+                ], 
+                "@csv.descripcion"
+            ], 
+            [
+                [
+                    "list_price", 
+                    "numeric", 
+                    null
+                ], 
+                "@csv.precio_iva"
+            ], 
+            [
+                [
+                    "uos_id", 
+                    "integer", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "warranty", 
+                    "double precision", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "write_uid", 
+                    "integer", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "write_date", 
+                    "timestamp without time zone", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "create_date", 
+                    "timestamp without time zone", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "create_uid", 
+                    "integer", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "id", 
+                    "integer", 
+                    null
+                ], 
+                null
+            ]
+        ], 
+        [
+            "id"
+        ]
+    ], 
+    "ID Insert002": [
+        "01_product_product", 
+        [
+            [
+                [
+                    "track_production", 
+                    "boolean", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "valuation", 
+                    "character varying", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "track_incoming", 
+                    "boolean", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "track_outgoing", 
+                    "boolean", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "price_margin", 
+                    "numeric", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "product_tmpl_id", 
+                    "integer", 
+                    null
+                ], 
+                "@01_product_template.id"
+            ], 
+            [
+                [
+                    "image_small", 
+                    "bytea", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "image_medium", 
+                    "bytea", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "variants", 
+                    "character varying", 
+                    64
+                ], 
+                null
+            ], 
+            [
+                [
+                    "active", 
+                    "boolean", 
+                    null
+                ], 
+                "@verdadero"
+            ], 
+            [
+                [
+                    "name_template", 
+                    "character varying", 
+                    128
+                ], 
+                "@csv.nombre"
+            ], 
+            [
+                [
+                    "default_code", 
+                    "character varying", 
+                    64
+                ], 
+                null
+            ], 
+            [
+                [
+                    "price_extra", 
+                    "numeric", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "image", 
+                    "bytea", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "color", 
+                    "integer", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "ean13", 
+                    "character varying", 
+                    13
+                ], 
+                null
+            ], 
+            [
+                [
+                    "write_uid", 
+                    "integer", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "write_date", 
+                    "timestamp without time zone", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "create_date", 
+                    "timestamp without time zone", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "create_uid", 
+                    "integer", 
+                    null
+                ], 
+                null
+            ], 
+            [
+                [
+                    "id", 
+                    "integer", 
+                    null
+                ], 
+                null
+            ]
+        ], 
+        [
+            "id"
+        ]
+    ], 
+    "Sql Inicial001": {
+        "campos": {
+            "categ_id": "1", 
+            "company_id": "None", 
+            "cost_method": "standard", 
+            "create_date": "None", 
+            "create_uid": "None", 
+            "description": "None", 
+            "description_purchase": "None", 
+            "description_sale": "None", 
+            "id": "None", 
+            "list_price": "None", 
+            "loc_case": "None", 
+            "loc_rack": "None", 
+            "loc_row": "None", 
+            "mes_type": "None", 
+            "name": "None", 
+            "procure_method": "None", 
+            "produce_delay": "None", 
+            "product_manager": "None", 
+            "purchase_ok": "None", 
+            "rental": "None", 
+            "sale_delay": "None", 
+            "sale_ok": "None", 
+            "standard_price": "None", 
+            "state": "None", 
+            "supply_method": "None", 
+            "type": "consu", 
+            "uom_id": "1", 
+            "uom_po_id": "1", 
+            "uos_coeff": "None", 
+            "uos_id": "None", 
+            "volume": "None", 
+            "warranty": "None", 
+            "weight": "None", 
+            "weight_net": "None", 
+            "write_date": "None", 
+            "write_uid": "None"
+        }, 
+        "continuar": 0, 
+        "nombre": "muestra", 
+        "sql": "SELECT * FROM product_template WHERE  name='muestra'", 
+        "tablas": [
+            "product_template"
+        ]
+    }, 
+    "Sql por Registro001": {
+        "campos": {
+            "id": "None"
+        }, 
+        "continuar": 0, 
+        "modificar": true, 
+        "nombre": "template_modifica", 
+        "sql": "SELECT id FROM 01_product_template WHERE name='@csv.nombre'", 
+        "tablas": [
+            "01_product_template"
+        ]
+    }, 
+    "Sql por Registro002": {
+        "campos": {
+            "id": "None"
+        }, 
+        "continuar": 0, 
+        "modificar": true, 
+        "nombre": "product_modifica", 
+        "sql": "SELECT id  FROM 01_product_product WHERE product_tmpl_id='@template_modifica.id'", 
+        "tablas": [
+            "01_product_product"
+        ]
+    }, 
+    "Valor Fijo001": {
+        "nombre": "verdadero", 
+        "valor": "True"
+    }, 
+    "Valor Fijo002": {
+        "nombre": "valuacion", 
+        "valor": "manual_periodic"
+    }, 
+    "Version": "0.1.1"
+}
